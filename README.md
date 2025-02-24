@@ -1,2 +1,1 @@
-# JavaScript_Practice
-JavaScript Codes
+While learning JavaScript, I have practiced these codes and learnt JavaScript.
