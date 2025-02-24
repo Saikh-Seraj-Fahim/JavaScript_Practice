@@ -1,0 +1,254 @@
+<!--Displaying object in browser-->
+
+<!--
+<!DOCTYPE html>
+<html>
+<body>
+    <p id="demo"></p>
+    <script>
+        const person = {
+            name: "John",
+            age: 30,
+            city: "New York"
+        };
+        // Display Object
+        document.getElementById("demo").innerHTML = person;
+    </script>
+</body>
+</html>
+-->
+
+<!-- Output: [object Object] -->
+
+
+<!--So, some solutions to display JavaScript objects in browsers are:
+Displaying the Object Properties by name
+Displaying the Object Properties in a Loop
+Displaying the Object using Object.values()
+Displaying the Object using JSON.stringify()-->
+
+
+<!--
+<!DOCTYPE html>
+<html>
+<body>
+    <p id="demo"></p>
+    <script>
+        const person = {
+            name: "John",
+            age: 30,
+            city: "New York"
+        };
+        // Display Properties
+        document.getElementById("demo").innerHTML=person.name+" " + person.age+" "+
+        person.city;
+    </script>
+</body>
+</html>
+-->
+
+<!-- Output: John 30 New York  -->
+
+
+
+<!DOCTYPE html>
+<html>
+<body>
+    <p id="demo"></p>
+    <script>
+        const person = {
+            name: "John",
+            age: 30,
+            city: "New York"
+        };
+        // Display Properties
+        document.getElementById("demo").innerHTML=person.name+" is " + person.age+
+        " years old.";
+    </script>
+</body>
+</html>
+
+<!-- Output: John is 30 years old. -->
+
+
+<!--
+<!DOCTYPE html>
+<html>
+<body>
+    <p id="demo"></p>
+    <script>
+        const person = {
+            name: "John",
+            age: 30,
+            city: "New York"
+        };
+        // Build a Text
+        let text = "";
+        for (let x in person) 
+        {
+            text = text + person[x] + " "; // text += person[x] + " ";
+        }
+        // Display the Text
+        document.getElementById("demo").innerHTML = text;
+    </script>
+</body>
+</html>
+-->
+
+<!-- Output: John 30 New York -->
+
+
+<!--
+<!DOCTYPE html>
+<html>
+<body>
+    <p id="demo"></p>
+    <script>
+        const person = {
+            name: "John",
+            age: 30,
+            city: "New York"
+        };
+        // Create an Array
+        const myArray = Object.values(person);
+        // Display the Array
+        document.getElementById("demo").innerHTML = myArray;
+    </script>
+</body>
+</html>
+-->
+
+<!--Output: John,30,New York-->
+
+
+<!--
+<!DOCTYPE html>
+<html>
+<body>
+    <p id="demo"></p>
+    <script>
+        const obj = {
+            name: "John",
+            age: function () 
+            {
+                return 30;
+            },
+            city: "New York"
+        };
+        const myArray=Object.values(obj);
+        document.getElementById("demo").innerHTML = myArray;
+    </script>
+</body>
+</html>
+-->
+
+<!--Output: John,function () { return 30; },New York-->
+
+
+<!--
+<!DOCTYPE html>
+<html>
+<body>
+    <p id="demo"></p>
+    <script>
+        const person = {
+            name: "John",
+            age: 30,
+            city: "New York"
+        };
+        // Display JSON
+        document.getElementById("demo").innerHTML = JSON.stringify(person);
+    </script>
+</body>
+</html>
+-->
+
+<!--Output: {"name":"John","age":30,"city":"New York"}-->
+
+
+<!--
+<!DOCTYPE html>
+<html>
+<body>
+    <p id="demo"></p>
+    <script>
+        const person = {
+            name: "John",
+            today: new Date()
+        };
+        let myString=JSON.stringify(person);
+        document.getElementById("demo").innerHTML = myString;
+    </script>
+</body>
+</html>
+-->
+
+<!--Output: {"name":"John","today":"2024-10-17T21:52:19.321Z"}-->
+
+
+<!--JSON.stringify() will not stringify functions-->
+<!--
+<!DOCTYPE html>
+<html>
+<body>
+    <p id="demo"></p>
+    <script>
+        const obj = { 
+        name: "John", 
+        age: function () 
+        { 
+            return 30; 
+        }, 
+        city: "New York" 
+        };
+        const myJSON = JSON.stringify(obj);
+        document.getElementById("demo").innerHTML = myJSON;
+    </script>
+</body>
+</html>
+-->
+
+<!--Output:{"name":"John","city":"New York"}-->
+
+
+<!--
+<!DOCTYPE html>
+<html>
+<body>
+    <p id="demo"></p>
+    <script>
+        const obj = { 
+            name: "John", 
+            age: function () 
+            { 
+                return 30; 
+            }, 
+            city: "New York" 
+        };
+        obj.age = obj.age.toString();
+        const myJSON = JSON.stringify(obj);
+        document.getElementById("demo").innerHTML = myJSON;
+    </script>
+</body>
+</html>
+-->
+
+<!--Output: {"name":"John","age":"function () \n { \n return 30; \n }",
+"city":"New York"}-->
+
+
+<!--
+<!DOCTYPE html>
+<html>
+<body>
+    <p id="demo"></p>
+    <script>
+        const arr=["John","Peter","Sally","Jane"]
+        let myString=JSON.stringify(arr);
+        document.getElementById("demo").innerHTML = myString;
+    </script>
+</body>
+</html>
+-->
+
+<!--Output: ["John","Peter","Sally","Jane"]-->

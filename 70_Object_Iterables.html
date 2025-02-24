@@ -1,0 +1,334 @@
+<!--Source-LWS-->
+
+<!--iterable mane hocche jegula ke sequentially 1 tar por 1 ta access kora jai.
+jamon array, string etc. array te sequentially element gula ke access kora hoi 1 tar 
+por 1 ta. object iterable na. karon object e order/sequence important na. object er 
+property gula jekono order e access kora jai.-->
+
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iterables</title>
+</head>
+<body>
+    <script>
+        const numbers={
+            one:1,
+            two:2,
+            three:3
+        };
+        for(let n of numbers)
+        {
+            console.log(n);
+        }
+    </script>
+</body>
+</html>
+-->
+
+<!--Output: Uncaught TypeError: numbers is not iterable at iterable.html:15:22
+
+for of loop diye iterables ke access kora jai. object iterables na. tai for of loop 
+diye object ke access kora jabe na.-->
+
+
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iterables</title>
+</head>
+<body>
+    <script>
+        const numbers={
+            one:1,
+            two:2,
+            three:3
+        };
+        const nums=[1,2,3];
+        console.dir(numbers);
+        console.dir(nums);
+    </script>
+</body>
+</html>
+-->
+
+<!--
+console.dir() er sahajje prototype soho details sob jana jai.
+
+Output:
+Object
+one: 1
+three: 3
+two: 2
+
+Array(3)
+0: 1
+1: 2
+2: 3
+length: 3
+[[Prototype]]: Array(0)
+Symbol(Symbol.iterator): ƒ values()
+
+
+object iterable na.tai er prototype er moddhe (Symbol.iterator) nai.
+array iterable. tai er prototype er moddhe (Symbol.iterator) ache.
+JavaScript evabei bujhe. Technically,jar prototype er moddhe (Symbol.iterator) ache 
+seta iterable.but jar prototype er moddhe (Symbol.iterator) nai seta iterable na.
+-->
+
+
+
+<!--iterator hocche je jinis er sahajje iterable ke iterate kora hoi. mane iterator
+er sahajje iterable ke iterate kora hoi.-->
+
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iterables</title>
+</head>
+<body>
+    <script>
+        const nums=[1,2,3];
+        console.dir(nums[Symbol.iterator]());
+    </script>
+</body>
+</html>
+-->
+
+<!--Output: Array Iterator-->
+<!--[[Prototype]]: Array Iterator
+next: ƒ next()
+iterator er prototype er moddhe 1 ta next() function thake. ei next() function er
+sahajjei element gula ke access kora jai.
+
+(Symbol.iterator) method:
+This method returns an iterator object, which must have a next() method.
+-->
+
+
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iterables</title>
+</head>
+<body>
+    <script>
+        const nums=[1,2,3];
+        const numIterator=nums[Symbol.iterator]();
+        console.log(numIterator.next());
+    </script>
+</body>
+</html>
+-->
+
+<!--Output:
+Object
+done: false
+value: 1
+
+
+The next() method must return an object with two properties:
+value (the next value)
+done (true or false)
+-->
+
+
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iterables</title>
+</head>
+<body>
+    <script>
+        const nums=[1,2,3];
+        const numIterator=nums[Symbol.iterator]();
+        console.log(numIterator.next());
+        console.log(numIterator.next());
+        console.log(numIterator.next());
+        console.log(numIterator.next());
+    </script>
+</body>
+</html>
+-->
+
+<!--Output:
+Object
+done: false
+value: 1
+
+Object
+done: false
+value: 2
+
+Object
+done: false
+value: 3
+
+Object
+done: true
+value: undefined
+-->
+
+
+
+<!--For Of loop e loop break korar kono condition thake na.tahole kivabe bujhe kokhon 
+loop break kora lagbe? for of loop iterator er sahajje bar bar next() function call 
+kore prottek element ke access kore. jokhon done er value true hoi tokhon bujhte pare 
+iterate kora ses. mane array er sob element access kora hoye geche. ar next() function
+call kore na.tokhon for of loop break kore. evabe for of loop kaj kore.-->
+
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iterables</title>
+</head>
+<body>
+    <script>
+        const nums=[1,2,3];
+        for(let n of nums)
+        {
+            console.log(n);
+        }
+    </script>
+</body>
+</html>
+-->
+
+<!--Output:
+1
+2
+3
+-->
+
+
+
+<!--Generally, object is not iterable.But we can make any object iterable by including
+(Symbol.iterator) in the object.-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iterables</title>
+</head>
+<body>
+    <script>
+        myNumbers={}; // Object
+        // Make the object Iterable
+        myNumbers[Symbol.iterator]=function() 
+        {
+            let n=0;
+            let done=false;
+            return {
+                next() 
+                {
+                    n=n+10;
+                    if(n==100) 
+                        done=true;
+                    return { 
+                        value: n, 
+                        done: done 
+                    }
+                }
+            }
+        }
+        for(let n of myNumbers)
+        {
+            console.log(n);
+        }
+    </script>
+</body>
+</html>
+
+<!--Output:
+10
+20
+30
+40
+50
+60
+70
+80
+90
+
+
+
+Key Components of the Code:
+(1)Symbol.iterator:
+Symbol.iterator is a well-known symbol that defines an iterable object in JavaScript.
+By assigning a function to myNumbers[Symbol.iterator], you are making myNumbers an 
+iterable object that can be used with constructs like for...of.
+
+(2)The Iterator Function:
+When for...of starts iterating over myNumbers, it will call the Symbol.iterator method.
+This method returns an iterator object, which must have a next() method.
+The next() method is called on each iteration to get the next value.
+
+(3)Iterator Object's next() Method:
+next() generates the next value in the sequence.
+It increments n by 10 on each call (n = n + 10).
+The next() method returns an object with two properties:
+value: The current value of n.
+done: A boolean indicating whether the iteration is complete.
+
+(4)The done flag:
+The done flag is set to true when n equals 100, signaling the end of the iteration.
+The loop will stop once done is true.
+
+
+
+
+Execution Flow:
+(1)First Iteration:
+The for...of loop starts, and myNumbers[Symbol.iterator]() is called, initializing n=0 
+and done = false.
+The loop calls the next() method.
+n is incremented by 10: n = 0 + 10 = 10.
+The next() method returns { value: 10, done: false }.
+The for...of loop logs 10.
+
+(2)Second Iteration:
+The next() method is called again.
+n is incremented by 10: n = 10 + 10 = 20.
+The next() method returns { value: 20, done: false }.
+The for...of loop logs 20.
+
+(3)Subsequent Iterations:
+The process repeats, incrementing n by 10 on each iteration and returning the new value:
+n = 30 → { value: 30, done: false } → Logs 30.
+n = 40 → { value: 40, done: false } → Logs 40.
+n = 50 → { value: 50, done: false } → Logs 50.
+n = 60 → { value: 60, done: false } → Logs 60.
+n = 70 → { value: 70, done: false } → Logs 70.
+n = 80 → { value: 80, done: false } → Logs 80.
+n = 90 → { value: 90, done: false } → Logs 90.
+
+(4)Final Iteration:
+On the final iteration:
+n = 100.
+The done flag is set to true.
+The next() method returns { value: 100, done: true }.
+The for...of loop logs 100.
+Since done is now true, the loop stops/breaks.
+
+Explanation Source-Chat GPT.
+
+-->

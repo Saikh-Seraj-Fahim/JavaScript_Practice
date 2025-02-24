@@ -1,0 +1,98 @@
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>75_Function_Invocation</title>
+</head>
+<body>
+    <p id="demo"></p>
+    <script>
+        function myFunction(a, b) {
+            return a * b;
+        }
+        document.getElementById("demo").innerHTML = myFunction(10, 2); 
+    </script>
+</body>
+</html>
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>75_Function_Invocation</title>
+</head>
+<body>
+    <p id="demo"></p>
+    <script>
+        function myFunction(a, b) {
+            return a * b;
+        }
+        document.getElementById("demo").innerHTML = window.myFunction(10, 2); 
+    </script>
+</body>
+</html>
+
+
+
+<!--
+Amra jokhon kono HTML file run kori browser e, browser er sei HTML page 1 ta 
+window object. jekono jinis sei global window object er under e. tar mane amra jei 
+function gula likhi segulao global window object er under e. Se jonno 
+window.myFunction() likhleo upor er code same output dibe. tobe window object ta 
+sudhu browser ei run kore. Node JS e run kore na.
+-->
+
+
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>75_Function_Invocation</title>
+</head>
+<body>
+    <p id="demo"></p>
+    <script>
+        let a = 5;
+        document.getElementById("demo").innerHTML = a;
+    </script>
+</body>
+</html>
+-->
+
+
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>75_Function_Invocation</title>
+</head>
+<body>
+    <p id="demo"></p>
+    <script>
+        var a = 5;
+        document.getElementById("demo").innerHTML = window.a;
+    </script>
+</body>
+</html>
+-->
+
+
+<!--
+Variables declared using let or const are block-scoped and do not become properties 
+of the global window object.
+In JavaScript:
+Variables declared with var are attached to the global object (window in the browser) 
+if they are declared in the global scope.
+Variables declared with let or const are not attached to the global object, even in 
+the global scope.
+-->
+
+
+
+
+
+
+
+
+
